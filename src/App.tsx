@@ -1,25 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Experiences from './pages/Experiences';
+import ExperienceDetails from './pages/ExperienceDetails';
+import CreateExperience from './pages/CreateExperience';
+import EditExperience from './pages/EditExperience';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Experiences />} />
+        <Route path="/experiences" element={<Experiences />} />
+        <Route path="/experiences/:experience_id" element={<ExperienceDetails />} />
+        <Route path="/experiences/new" element={<CreateExperience />} />
+        <Route path="/experiences/:experience_id/edit" element={<EditExperience />} />
+      </Routes>
+    </Router>
   );
 }
 
