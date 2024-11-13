@@ -37,7 +37,9 @@ const ExperienceDetails = () => {
         <h1 className="text-3xl font-bold mb-2 text-gray-800">{experience.title}</h1>
         <p className="text-lg font-semibold mb-2 text-gray-600">Rating: {experience.rating}</p>
         <p className="text-base mb-4 text-gray-700">{experience.description}</p>
-        <Link to={`/experiences/${experience.id}/edit`} className="text-blue-500 hover:text-blue-700 underline transition duration-150 mt-4 inline-block">Edit Experience</Link>
+        <Link to={`/experiences/${experience.id}/edit`}
+        state={{ experience }}
+        className="text-blue-500 hover:text-blue-700 underline transition duration-150 mt-4 inline-block">Edit Experience</Link>
     </div>
 
   );
