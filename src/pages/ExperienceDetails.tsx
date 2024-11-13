@@ -47,7 +47,7 @@ const ExperienceDetails = () => {
 
   return (
     <div className="p-4 max-w-2xl mx-auto bg-white rounded-lg shadow-md">
-        <BackButton/>
+        <BackButton goToExperiences={true}/>
         <img src={experience.imageUrl} alt={experience.title} className="w-full h-auto max-h-96 mb-4 rounded object-contain" />
         <h1 className="text-3xl font-bold mb-2 text-gray-800">{experience.title}</h1>
         <p className="text-lg font-semibold mb-2 text-gray-600">Rating: {experience.rating}</p>

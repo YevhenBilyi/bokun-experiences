@@ -1,10 +1,23 @@
 import { useNavigate } from 'react-router-dom';
 
-const BackButton = () => {
+interface BackButtonProps {
+  goToExperiences?: boolean;
+}
+
+const BackButton: React.FC<BackButtonProps> = ({ goToExperiences = false }) => {
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (goToExperiences) {
+      navigate('/experiences');
+    } else {
+      navigate(-1); // Go back to the previous page
+    }
+  };
+
   return (
     <button
-      onClick={() => navigate(-1)}
+      onClick={handleClick}
       className="text-blue-500 hover:underline mb-4 inline-block"
     >
       ← Back
