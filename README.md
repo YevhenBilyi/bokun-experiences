@@ -12,7 +12,7 @@ These instructions will help you set up and run the project locally.
 ### Installation
 1. Clone the repository:
 ```bash
-    git clone https://github.com/your-username/bokun-experiences.git
+    git clone https://github.com/YevhenBilyi/bokun-experiences.git
 ```
 2. Navigate to the project directory:
 ```bash
