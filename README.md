@@ -33,9 +33,13 @@ The app will be available at http://localhost:3000.
 
 ### Features
 View a list of experiences
+
 View details of each experience
+
 Create new experiences
+
 Edit existing experiences
+
 Delete experiences
 
 ### Technology Stack
@@ -57,8 +61,11 @@ bokun-experiences/
 
 ### Usage Instructions
 **View Experiences:** Navigate to the main page to see a list of experiences.
+
 **Create a New Experience:** Click the "Create New Experience" button on the main page.
+
 **Edit an Experience:** View an experience's details and click "Edit" to modify it.
+
 **Delete an Experience:** View an experience's details and click "Delete" to remove it.
 
 ### Known Issues or Future Improvements
@@ -66,4 +73,4 @@ Additional error handling for API failures
 Improved validation for form inputs
 
 ### Contact
-For any questions or feedback, please reach out to me at [leugenewhitel@gmail.com].
+For any questions or feedback, please reach out to me at [leugenewhitel@gmail.com](mailto:leugenewhitel@gmail.com).
