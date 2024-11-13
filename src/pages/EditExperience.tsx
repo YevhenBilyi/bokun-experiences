@@ -3,6 +3,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { updateExperience } from '../services/experienceService';
 import { Experience } from '../types/experienceTypes';
 import ExperienceForm from '../components/ExperienceForm';
+import BackButton from '../components/BackButton';
 
 const EditExperience = () => {
     const { experience_id } = useParams<{ experience_id: string }>();
@@ -28,7 +29,7 @@ const EditExperience = () => {
         alert('Failed to update experience.');
         }
     };
-    
+
     useEffect(() => {
     if (!experience) {
       // If no experience data was passed, redirect to experience details page
@@ -38,12 +39,13 @@ const EditExperience = () => {
 
   return (
     <div className="p-4 max-w-lg mx-auto bg-white">
-      <h1 className="text-2xl font-bold mb-4">Edit Experience</h1>
-      <ExperienceForm
-      initialData={experience}
-      onSubmit={handleUpdateExperience}
-      buttonText="Update Experience"
-    />
+        <BackButton />
+        <h1 className="text-2xl font-bold mb-4">Edit Experience</h1>
+        <ExperienceForm
+        initialData={experience}
+        onSubmit={handleUpdateExperience}
+        buttonText="Update Experience"
+        />
     </div>
   );
 };

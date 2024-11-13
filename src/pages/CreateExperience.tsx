@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { createExperience } from '../services/experienceService';
 import ExperienceForm from '../components/ExperienceForm';
+import BackButton from '../components/BackButton';
 
 const CreateExperience = () => {
     const navigate = useNavigate();
@@ -16,6 +17,7 @@ const CreateExperience = () => {
 
   return (
     <div className="p-4 max-w-lg mx-auto bg-white">
+        <BackButton />
         <h1 className="text-2xl font-bold mb-4">Create New Experience</h1>
         <ExperienceForm
         onSubmit={handleCreateExperience}

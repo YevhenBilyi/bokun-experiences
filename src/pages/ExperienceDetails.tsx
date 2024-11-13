@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getExperienceById } from '../services/experienceService';
 import { Experience } from '../types/experienceTypes';
 import { Link } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 
 const ExperienceDetails = () => {
   const { experience_id } = useParams<{ experience_id: string }>();
@@ -32,7 +33,7 @@ const ExperienceDetails = () => {
 
   return (
     <div className="p-4 max-w-2xl mx-auto bg-white rounded-lg shadow-md">
-        <Link to="/experiences" className="text-blue-500 hover:text-blue-700 underline transition duration-150 mb-4 inline-block">← Back to Experiences</Link>
+        <BackButton/>
         <img src={experience.imageUrl} alt={experience.title} className="w-full h-auto max-h-96 mb-4 rounded object-contain" />
         <h1 className="text-3xl font-bold mb-2 text-gray-800">{experience.title}</h1>
         <p className="text-lg font-semibold mb-2 text-gray-600">Rating: {experience.rating}</p>
