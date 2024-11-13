@@ -45,6 +45,7 @@ React Router for navigation
 Prettier for code formatting
 
 ### Project Structure
+```bash
 bokun-experiences/
 ├── src/
 │   ├── components/          # Reusable components like BackButton and ExperienceForm
@@ -52,6 +53,7 @@ bokun-experiences/
 │   ├── services/            # API service functions
 │   └── App.tsx              # Main app component with routing setup
 └── ...
+```
 
 ### Usage Instructions
 **View Experiences:** Navigate to the main page to see a list of experiences.
