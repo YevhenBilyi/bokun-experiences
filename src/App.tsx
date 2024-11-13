@@ -10,9 +10,15 @@ function App() {
       <Routes>
         <Route path="/" element={<Experiences />} />
         <Route path="/experiences" element={<Experiences />} />
-        <Route path="/experiences/:experience_id" element={<ExperienceDetails />} />
+        <Route
+          path="/experiences/:experience_id"
+          element={<ExperienceDetails />}
+        />
         <Route path="/experiences/new" element={<CreateExperience />} />
-        <Route path="/experiences/:experience_id/edit" element={<EditExperience />} />
+        <Route
+          path="/experiences/:experience_id/edit"
+          element={<EditExperience />}
+        />
       </Routes>
     </Router>
   );

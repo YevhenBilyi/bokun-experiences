@@ -1,0 +1,16 @@
+# Ignore dependencies
+node_modules
+
+# Ignore build output
+build
+dist
+.next
+
+# Ignore public assets
+public
+
+# Ignore package lock and configuration files that don’t need Prettier formatting
+package-lock.json
+postcss.config.js
+tailwind.config.js
+tsconfig.json

@@ -3,11 +3,20 @@ import { Experience } from '../types/experienceTypes';
 
 interface ExperienceFormProps {
   initialData?: Partial<Experience>;
-  onSubmit: (data: { title: string; rating: number; description: string; imageUrl: string }) => void;
+  onSubmit: (data: {
+    title: string;
+    rating: number;
+    description: string;
+    imageUrl: string;
+  }) => void;
   buttonText: string;
 }
 
-const ExperienceForm: React.FC<ExperienceFormProps> = ({ initialData = {}, onSubmit, buttonText }) => {
+const ExperienceForm: React.FC<ExperienceFormProps> = ({
+  initialData = {},
+  onSubmit,
+  buttonText,
+}) => {
   const [title, setTitle] = useState(initialData.title || '');
   const [rating, setRating] = useState<number | ''>(initialData.rating || '');
   const [description, setDescription] = useState(initialData.description || '');
@@ -32,7 +41,10 @@ const ExperienceForm: React.FC<ExperienceFormProps> = ({ initialData = {}, onSub
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 max-w-lg mx-auto bg-white rounded-lg shadow-md">
+    <form
+      onSubmit={handleSubmit}
+      className="p-4 max-w-lg mx-auto bg-white rounded-lg shadow-md"
+    >
       {error && <p className="text-red-500 mb-4">{error}</p>}
       <label className="block mb-2">
         Title:
@@ -48,7 +60,9 @@ const ExperienceForm: React.FC<ExperienceFormProps> = ({ initialData = {}, onSub
         <input
           type="number"
           value={rating}
-          onChange={(e) => setRating(e.target.value ? Number(e.target.value) : '')}
+          onChange={(e) =>
+            setRating(e.target.value ? Number(e.target.value) : '')
+          }
           className="w-full p-2 border rounded mb-4"
           min="0"
           max="10"
