@@ -27,38 +27,38 @@ const ExperienceForm: React.FC<ExperienceFormProps> = ({
 
   const validateImageUrl = async (url: string) => {
     try {
-      const response = await fetch(url, { method: 'HEAD' }); 
+      const response = await fetch(url, { method: 'HEAD' });
       const contentType = response.headers.get('content-type');
-  
+
       if (contentType && contentType.startsWith('image/')) {
-        return true; 
+        return true;
       }
-      return false; 
+      return false;
     } catch {
-      return false; 
+      return false;
     }
   };
 
-  const handleSubmit = async(e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
     if (!title.trim()) {
-        setError('Title is required.');
-        return;
-      }
-      if (!rating || rating < 0 || rating > 10) {
-        setError('Rating must be between 0 and 10.');
-        return;
-      }
-      if (!description.trim()) {
-        setError('Description is required.');
-        return;
-      }
-      if (!(await validateImageUrl(imageUrl))) {
-        setError('Invalid image URL. Please provide a direct link to an image.');
-        return;
-      }
+      setError('Title is required.');
+      return;
+    }
+    if (!rating || rating < 0 || rating > 10) {
+      setError('Rating must be between 0 and 10.');
+      return;
+    }
+    if (!description.trim()) {
+      setError('Description is required.');
+      return;
+    }
+    if (!(await validateImageUrl(imageUrl))) {
+      setError('Invalid image URL. Please provide a direct link to an image.');
+      return;
+    }
 
     onSubmit({
       title,
@@ -115,12 +115,12 @@ const ExperienceForm: React.FC<ExperienceFormProps> = ({
           className="w-full p-2 border rounded mb-4"
         />
       </label>
-      <button 
+      <button
         type="submit"
         disabled={isSubmitting}
-        className={`w-full p-2 rounded ${isSubmitting ? "bg-disabled" : "bg-primary hover:bg-primaryHover"} text-white`}
-        >
-        {isSubmitting ? "Submitting..." : buttonText}
+        className={`w-full p-2 rounded ${isSubmitting ? 'bg-disabled' : 'bg-primary hover:bg-primaryHover'} text-white`}
+      >
+        {isSubmitting ? 'Submitting...' : buttonText}
       </button>
     </form>
   );

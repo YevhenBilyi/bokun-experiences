@@ -39,16 +39,21 @@ const ExperienceDetails = () => {
     if (!confirmDelete) return;
 
     deleteMutation.mutate(experience_id, {
-        onSuccess: () => {
-            navigate('/experiences');
-        },
-        onError: (error) => {
-            alert('Failed to delete experience: ' + error.message);
-        }
+      onSuccess: () => {
+        navigate('/experiences');
+      },
+      onError: (error) => {
+        alert('Failed to delete experience: ' + error.message);
+      },
     });
   };
 
-  if (loading) return <div className="text-center text-gray-500 text-lg">Loading experience details...</div>;
+  if (loading)
+    return (
+      <div className="text-center text-gray-500 text-lg">
+        Loading experience details...
+      </div>
+    );
   if (error) return <p>{error}</p>;
   if (!experience) return <p>No experience found</p>;
 
@@ -76,12 +81,12 @@ const ExperienceDetails = () => {
         >
           Edit Experience
         </Link>
-        <button 
-            onClick={handleDelete}
-            disabled={deleteMutation.isPending} 
-            className={`mt-4 px-6 py-3 rounded-lg text-white text-lg tracking-wide transition-all shadow-md active:scale-95 ${deleteMutation.isPending ? "bg-disabled" : "bg-danger hover:bg-dangerHover"}`}
-            >
-            {deleteMutation.isPending ? "Deleting..." : "Delete Experience"}
+        <button
+          onClick={handleDelete}
+          disabled={deleteMutation.isPending}
+          className={`mt-4 px-6 py-3 rounded-lg text-white text-lg tracking-wide transition-all shadow-md active:scale-95 ${deleteMutation.isPending ? 'bg-disabled' : 'bg-danger hover:bg-dangerHover'}`}
+        >
+          {deleteMutation.isPending ? 'Deleting...' : 'Delete Experience'}
         </button>
       </div>
     </div>

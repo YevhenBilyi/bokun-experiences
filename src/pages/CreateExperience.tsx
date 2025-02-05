@@ -1,9 +1,7 @@
-
 import { useCreateExperience } from '../services/experienceMutations';
 import { useNavigate } from 'react-router-dom';
 import ExperienceForm from '../components/ExperienceForm';
 import BackButton from '../components/BackButton';
-
 
 const CreateExperience = () => {
   const navigate = useNavigate();
@@ -16,14 +14,13 @@ const CreateExperience = () => {
     imageUrl: string;
   }) => {
     mutation.mutate(data, {
-        onSuccess: () => {
-            navigate('/experiences');
-        },
-        onError: (error) => {
-            alert('Failed to create experience: ' + error.message);
-        }
+      onSuccess: () => {
+        navigate('/experiences');
+      },
+      onError: (error) => {
+        alert('Failed to create experience: ' + error.message);
+      },
     });
-
   };
 
   return (

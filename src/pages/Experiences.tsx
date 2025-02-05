@@ -4,16 +4,22 @@ import { Experience } from '../types/experienceTypes';
 import { Link } from 'react-router-dom';
 
 const Experiences = () => {
-    const { data: experiences, error, isLoading } = useQuery({
-        queryKey: ['experiences'], // Unique key for caching
-        queryFn: getExperiences,   // Fetch function
-        staleTime: 1000 * 60 * 5,  // Cache data for 5 minutes
-      });
+  const {
+    data: experiences,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ['experiences'], // Unique key for caching
+    queryFn: getExperiences, // Fetch function
+    staleTime: 1000 * 60 * 5, // Cache data for 5 minutes
+  });
 
-
-
-      if (isLoading) return <p className="text-center text-gray-500">Loading experiences...</p>;
-      if (error) return <p className="text-center text-red-500">Failed to load experiences.</p>;
+  if (isLoading)
+    return <p className="text-center text-gray-500">Loading experiences...</p>;
+  if (error)
+    return (
+      <p className="text-center text-red-500">Failed to load experiences.</p>
+    );
 
   return (
     <div className="p-4">

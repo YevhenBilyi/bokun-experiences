@@ -10,7 +10,9 @@ const EditExperience = () => {
   const { experience_id } = useParams<{ experience_id: string }>();
   const navigate = useNavigate();
   const location = useLocation();
-  const [experience, setExperience] = useState<Experience | null>(location.state?.experience || null);
+  const [experience, setExperience] = useState<Experience | null>(
+    location.state?.experience || null
+  );
   const mutation = useUpdateExperience();
 
   const handleUpdateExperience = async (data: {
@@ -19,12 +21,11 @@ const EditExperience = () => {
     description: string;
     imageUrl: string;
   }) => {
-
     if (!experience_id) {
-        alert('Invalid experience ID.');
-        navigate('/experiences');
-        return;
-      }
+      alert('Invalid experience ID.');
+      navigate('/experiences');
+      return;
+    }
     // Compare current form data with the initial `experience` data
     if (
       data.title === experience?.title &&
@@ -35,18 +36,18 @@ const EditExperience = () => {
       alert('No changes were made.');
       return;
     }
-      const updatedExperience: Experience = {
-        id: experience_id,
-        ...data,
-      };
-      mutation.mutate(updatedExperience, {
-        onSuccess: () => {
-          navigate(`/experiences/${experience_id}`)
-        },
-        onError: (error) => {
-          alert('Failed to update experience: ' + error.message);
-        }
-      });
+    const updatedExperience: Experience = {
+      id: experience_id,
+      ...data,
+    };
+    mutation.mutate(updatedExperience, {
+      onSuccess: () => {
+        navigate(`/experiences/${experience_id}`);
+      },
+      onError: (error) => {
+        alert('Failed to update experience: ' + error.message);
+      },
+    });
   };
 
   useEffect(() => {
