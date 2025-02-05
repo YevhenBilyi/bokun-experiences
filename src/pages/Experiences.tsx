@@ -1,31 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { getExperiences } from '../services/experienceService';
 import { Experience } from '../types/experienceTypes';
 import { Link } from 'react-router-dom';
 
 const Experiences = () => {
-  const [experiences, setExperiences] = useState<Experience[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+    const { data: experiences, error, isLoading } = useQuery({
+        queryKey: ['experiences'], // Unique key for caching
+        queryFn: getExperiences,   // Fetch function
+        staleTime: 1000 * 60 * 5,  // Cache data for 5 minutes
+      });
 
-  useEffect(() => {
-    // Fetch experiences from API
-    async function fetchExperiences() {
-      try {
-        const data = await getExperiences();
-        setExperiences(data);
-      } catch (err) {
-        setError('Failed to fetch experiences');
-      } finally {
-        setLoading(false);
-      }
-    }
 
-    fetchExperiences();
-  }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+      if (isLoading) return <p className="text-center text-gray-500">Loading experiences...</p>;
+      if (error) return <p className="text-center text-red-500">Failed to load experiences.</p>;
 
   return (
     <div className="p-4">
@@ -33,13 +21,13 @@ const Experiences = () => {
         <h1 className="text-2xl font-bold mb-4">Experiences</h1>
         <Link
           to="/experiences/new"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+          className="bg-primary text-white px-4 py-2 rounded hover:bg-primaryHover transition-colors"
         >
           + Create New Experience
         </Link>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {experiences.map((experience) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+        {experiences?.map((experience: Experience) => (
           <Link to={`/experiences/${experience.id}`} key={experience.id}>
             <div className="border p-4 rounded shadow-sm hover:shadow-md transition-shadow">
               <img

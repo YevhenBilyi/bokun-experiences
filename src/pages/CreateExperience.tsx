@@ -1,10 +1,13 @@
+
+import { useCreateExperience } from '../services/experienceMutations';
 import { useNavigate } from 'react-router-dom';
-import { createExperience } from '../services/experienceService';
 import ExperienceForm from '../components/ExperienceForm';
 import BackButton from '../components/BackButton';
 
+
 const CreateExperience = () => {
   const navigate = useNavigate();
+  const mutation = useCreateExperience();
 
   const handleCreateExperience = async (data: {
     title: string;
@@ -12,12 +15,15 @@ const CreateExperience = () => {
     description: string;
     imageUrl: string;
   }) => {
-    try {
-      await createExperience(data);
-      navigate('/experiences');
-    } catch {
-      alert('Failed to create experience.');
-    }
+    mutation.mutate(data, {
+        onSuccess: () => {
+            navigate('/experiences');
+        },
+        onError: (error) => {
+            alert('Failed to create experience: ' + error.message);
+        }
+    });
+
   };
 
   return (
@@ -27,6 +33,7 @@ const CreateExperience = () => {
       <ExperienceForm
         onSubmit={handleCreateExperience}
         buttonText="Create Experience"
+        isSubmitting={mutation.isPending}
       />
     </div>
   );
