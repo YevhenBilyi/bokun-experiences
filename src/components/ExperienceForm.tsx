@@ -25,19 +25,18 @@ const ExperienceForm: React.FC<ExperienceFormProps> = ({
   const [imageUrl, setImageUrl] = useState(initialData.imageUrl || '');
   const [error, setError] = useState<string | null>(null);
 
-  const validateImageUrl = async (url: string) => {
-    try {
-      const response = await fetch(url, { method: 'HEAD' });
-      const contentType = response.headers.get('content-type');
-
-      if (contentType && contentType.startsWith('image/')) {
-        return true;
-      }
-      return false;
-    } catch {
-      return false;
-    }
+  const validateImageUrl = (url: string): Promise<boolean> => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      
+      img.src = url;
+    });
   };
+  
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
